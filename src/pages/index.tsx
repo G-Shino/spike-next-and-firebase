@@ -1,86 +1,36 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "@emotion/styled";
-import { TextField, Button } from "@material-ui/core";
-import { FontSize } from "./../constants/Font";
-// import firebase from "./../lib/firebase";
+import { Button } from "@material-ui/core";
+import Router from "next/router";
 
 const Home: React.FC = () => {
-  const [nickname, setNickname] = useState("");
-  const [nicknameValidationMessage, setNicknameValidationMessage] = useState(
-    "このフィールドを入力してください。"
-  );
-  const [email, setEmail] = useState("");
-  const [emailValidationMessage, setEmailValidationMessage] = useState(
-    "このフィールドを入力してください。"
-  );
-  const [password, setPassword] = useState("");
-  const [passwordValidationMessage, setPasswordValidationMessage] = useState(
-    "このフィールドを入力してください。"
-  );
-
-  const handleNicknameFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNickname(e.target.value);
-    setNicknameValidationMessage(e.target.validationMessage);
+  const handleSignUpButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log(e);
+    Router.push("/sign-up");
   };
-  const handleEmailFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-    setEmailValidationMessage(e.target.validationMessage.slice(0, 22));
+  const handleSignInButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log(e);
+    Router.push("/sign-in");
   };
-  const handlePasswordFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-    setPasswordValidationMessage(e.target.validationMessage);
-  };
-  const handleSubmitButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    console.log(nickname);
-    console.log(email);
-    console.log(password);
-    console.log(
-      "" === nicknameValidationMessage &&
-        "" === emailValidationMessage &&
-        "" === passwordValidationMessage
-    );
-  };
-
   return (
     <WrapperDiv>
-      <TitleH1>Sign Up</TitleH1>
-      <MainForm>
-        <StyledTextField
-          required
-          label="Nickname"
-          onChange={handleNicknameFormChange}
-          helperText={nicknameValidationMessage}
-        />
-        <StyledTextField
-          required
-          label="Email"
-          type="email"
-          onChange={handleEmailFormChange}
-          helperText={emailValidationMessage}
-        />
-        <StyledTextField
-          required
-          label="Password"
-          type="password"
-          onChange={handlePasswordFormChange}
-          helperText={passwordValidationMessage}
-        />
+      <TitleH1>Enter!!</TitleH1>
+      <ButtonDiv>
         <StyledButton
           variant="outlined"
           type="button"
-          onClick={handleSubmitButtonClick}
-          disabled={
-            !(
-              "" === nicknameValidationMessage &&
-              "" === emailValidationMessage &&
-              "" === passwordValidationMessage
-            )
-          }
+          onClick={handleSignUpButtonClick}
         >
           Sign Up
         </StyledButton>
-      </MainForm>
+        <StyledButton
+          variant="outlined"
+          type="button"
+          onClick={handleSignInButtonClick}
+        >
+          Sign In
+        </StyledButton>
+      </ButtonDiv>
     </WrapperDiv>
   );
 };
@@ -96,26 +46,14 @@ const WrapperDiv = styled.div`
 
 const TitleH1 = styled.h1``;
 
-const MainForm = styled.form`
-  width: 100%;
-  height: 320px;
-  margin-top: 8px;
+const ButtonDiv = styled.div`
+  width: 240px;
+  margin-top: 16px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
 `;
-
-const StyledTextField = styled(TextField)`
-  min-width: 480px;
-
-  .MuiInputLabel-root {
-    font-size: ${FontSize.BASE};
-  }
-  .MuiInputBase-input {
-    font-size: ${FontSize.BASE};
-  }
-` as typeof TextField;
 
 const StyledButton = styled(Button)`
   width: 96px;
