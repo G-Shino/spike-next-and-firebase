@@ -43,7 +43,7 @@ const SignUp: React.FC = () => {
         .auth()
         .createUserWithEmailAndPassword(email, password);
       console.log("Sing up: OK", user);
-      Router.push("/logout");
+      Router.push("/chat");
     } catch (error) {
       console.error("Sign up: ERROR", error);
     }

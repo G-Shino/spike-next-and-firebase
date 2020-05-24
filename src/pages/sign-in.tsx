@@ -35,7 +35,7 @@ const SignIn: React.FC = () => {
         .auth()
         .signInWithEmailAndPassword(email, password);
       console.log("Sing in: OK", user);
-      Router.push("/logout");
+      Router.push("/chat");
     } catch (error) {
       console.error("Sign in: ERROR", error);
     }
