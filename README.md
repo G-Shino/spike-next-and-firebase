@@ -268,5 +268,18 @@ const Controls = dynamic(() => import("上のファイルへのパス"), {
 ```
 
 axios　API叩くときに使用　重宝する<br/>
-yarn add axios
+`yarn add axios`
 
+direnv ディレクトリごとに環境変数を設定してくれるツール  cliで使用する<br/>
+fishの場合
+```
+brew install direnv
+set -x EDITOR vim
+eval (direnv hook fish)
+```
+
+`.envrc`を作成し、中に環境変数の定義を書き込む -> `direnv allow`で有効化
+
+firebase　googleのBaaS<br/>
+ライブラリをインストール configを設定して有効化 そののち利用<br/>
+`yarn add firebase`
