@@ -80,7 +80,7 @@ const SignIn: React.FC = () => {
             !("" === emailValidationMessage && "" === passwordValidationMessage)
           }
         >
-          Sign Up
+          Sign In
         </StyledButton>
       </MainForm>
     </WrapperDiv>
