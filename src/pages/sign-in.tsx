@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Router from "next/router";
 import styled from "@emotion/styled";
 import { TextField, Button, Typography } from "@material-ui/core";
+import { Alert, AlertTitle } from "@material-ui/lab";
 import firebase from "../lib/firebase";
 
 const SignIn: React.FC = () => {
@@ -13,6 +14,7 @@ const SignIn: React.FC = () => {
   const [passwordValidationMessage, setPasswordValidationMessage] = useState(
     "このフィールドを入力してください。"
   );
+  const [flagSignInError, setFlagSignInError] = useState(false);
 
   const handleEmailFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -37,11 +39,20 @@ const SignIn: React.FC = () => {
       Router.push("/chat");
     } catch (error) {
       console.error("Sign in: ERROR", error);
+      setFlagSignInError(true);
     }
   };
 
   return (
     <WrapperDiv>
+      {flagSignInError ? (
+        <Alert severity="error" style={{ marginBottom: "16px" }}>
+          <AlertTitle>Sign In Error</AlertTitle>
+          Sorry, Please try again
+        </Alert>
+      ) : (
+        <></>
+      )}
       <Typography variant="h1">Sign In</Typography>
       <MainForm>
         <StyledTextField
