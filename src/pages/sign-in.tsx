@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import Router from "next/router";
 import styled from "@emotion/styled";
-import { TextField, Button } from "@material-ui/core";
-import { FontSize } from "../constants/Font";
+import { TextField, Button, Typography } from "@material-ui/core";
 import firebase from "../lib/firebase";
 
 const SignIn: React.FC = () => {
@@ -43,26 +42,27 @@ const SignIn: React.FC = () => {
 
   return (
     <WrapperDiv>
-      <TitleH1>Sign In</TitleH1>
+      <Typography variant="h1">Sign In</Typography>
       <MainForm>
         <StyledTextField
-          required
           label="Email"
-          value={email}
           type="email"
+          value={email}
           onChange={handleEmailFormChange}
+          required
+          error={!(emailValidationMessage === "")}
           helperText={emailValidationMessage}
         />
         <StyledTextField
-          required
           label="Password"
           value={password}
           type="password"
           onChange={handlePasswordFormChange}
+          required
+          error={!(passwordValidationMessage === "")}
           helperText={passwordValidationMessage}
         />
         <StyledButton
-          variant="outlined"
           type="button"
           onClick={handleSubmitButtonClick}
           disabled={
@@ -85,8 +85,6 @@ const WrapperDiv = styled.div`
   align-items: center;
 `;
 
-const TitleH1 = styled.h1``;
-
 const MainForm = styled.form`
   width: 100%;
   height: 240px;
@@ -99,13 +97,6 @@ const MainForm = styled.form`
 
 const StyledTextField = styled(TextField)`
   min-width: 480px;
-
-  .MuiInputLabel-root {
-    font-size: ${FontSize.BASE};
-  }
-  .MuiInputBase-input {
-    font-size: ${FontSize.BASE};
-  }
 ` as typeof TextField;
 
 const StyledButton = styled(Button)`

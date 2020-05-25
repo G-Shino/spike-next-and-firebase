@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Router from "next/router";
 import firebase from "./../lib/firebase";
-import { FontSize } from "./../constants/Font";
 import styled from "@emotion/styled";
 import { TextField, Button } from "@material-ui/core";
 
@@ -61,23 +60,17 @@ const Logout: React.FC = () => {
     <WrapperDiv>
       <TitleH1>Send Your Message!!</TitleH1>
       <ButtonDiv>
-        <StyledButton
-          variant="outlined"
-          type="button"
-          onClick={handleLogoutButtonClick}
-        >
+        <StyledButton type="button" onClick={handleLogoutButtonClick}>
           Logout
         </StyledButton>
       </ButtonDiv>
       <StyledMessageForm>
         <StyledTextField
           label="Message"
-          variant="outlined"
           value={message}
           onChange={handleMessageTextChange}
         ></StyledTextField>
         <StyledSendButton
-          variant="outlined"
           type="button"
           disabled={message === ""}
           onClick={handleSendButtonClick}
@@ -111,13 +104,6 @@ const StyledMessageForm = styled.form`
 
 const StyledTextField = styled(TextField)`
   min-width: 480px;
-
-  .MuiInputLabel-root {
-    font-size: ${FontSize.BASE};
-  }
-  .MuiInputBase-input {
-    font-size: ${FontSize.BASE};
-  }
 ` as typeof TextField;
 
 const StyledSendButton = styled(Button)`

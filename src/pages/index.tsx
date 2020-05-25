@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Button } from "@material-ui/core";
+import { Button, Typography, Container } from "@material-ui/core";
 import Router from "next/router";
 
 const Home: React.FC = () => {
@@ -14,20 +14,12 @@ const Home: React.FC = () => {
   };
   return (
     <WrapperDiv>
-      <TitleH1>Enter!!</TitleH1>
+      <Typography variant="h1">Demo</Typography>
       <ButtonDiv>
-        <StyledButton
-          variant="outlined"
-          type="button"
-          onClick={handleSignUpButtonClick}
-        >
+        <StyledButton type="button" onClick={handleSignUpButtonClick}>
           Sign Up
         </StyledButton>
-        <StyledButton
-          variant="outlined"
-          type="button"
-          onClick={handleSignInButtonClick}
-        >
+        <StyledButton type="button" onClick={handleSignInButtonClick}>
           Sign In
         </StyledButton>
       </ButtonDiv>
@@ -43,8 +35,6 @@ const WrapperDiv = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
-const TitleH1 = styled.h1``;
 
 const ButtonDiv = styled.div`
   width: 240px;
