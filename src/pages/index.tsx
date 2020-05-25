@@ -1,15 +1,13 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Button, Typography, Container } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 import Router from "next/router";
 
 const Home: React.FC = () => {
-  const handleSignUpButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log(e);
+  const handleSignUpButtonClick = () => {
     Router.push("/sign-up");
   };
-  const handleSignInButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log(e);
+  const handleSignInButtonClick = () => {
     Router.push("/sign-in");
   };
   return (

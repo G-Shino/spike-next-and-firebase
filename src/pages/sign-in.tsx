@@ -88,7 +88,7 @@ const WrapperDiv = styled.div`
 const MainForm = styled.form`
   width: 100%;
   height: 240px;
-  margin-top: 8px;
+  margin-top: 16px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

@@ -24,6 +24,9 @@ export const theme = createMuiTheme({
     h1: {
       fontSize: 24,
     },
+    body1: {
+      fontSize: 16,
+    },
     button: {
       textTransform: "none",
     },

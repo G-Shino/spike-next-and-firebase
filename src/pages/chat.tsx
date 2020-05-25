@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Router from "next/router";
 import firebase from "./../lib/firebase";
 import styled from "@emotion/styled";
-import { TextField, Button } from "@material-ui/core";
+import { TextField, Button, Typography } from "@material-ui/core";
 
 const Logout: React.FC = () => {
   const [message, setMessage] = useState("");
@@ -51,6 +51,9 @@ const Logout: React.FC = () => {
       console.log(messageId, messageData);
       setMessageList((prev) => [...prev, messageData.message]);
     });
+    const currentUser = firebase.auth().currentUser;
+    console.log("userId", currentUser?.uid);
+    console.log("displayName", currentUser?.displayName);
     return () => {
       messageRef.off("child_added");
     };
@@ -58,7 +61,7 @@ const Logout: React.FC = () => {
 
   return (
     <WrapperDiv>
-      <TitleH1>Send Your Message!!</TitleH1>
+      <Typography variant="h1">Send Your Message!!</Typography>
       <ButtonDiv>
         <StyledButton type="button" onClick={handleLogoutButtonClick}>
           Logout
@@ -79,7 +82,9 @@ const Logout: React.FC = () => {
         </StyledSendButton>
       </StyledMessageForm>
       {messageList.map((message, idx) => (
-        <p key={idx}>{message}</p>
+        <Typography variant="body1" key={idx}>
+          {message}
+        </Typography>
       ))}
     </WrapperDiv>
   );
@@ -92,10 +97,6 @@ const WrapperDiv = styled.div`
   flex-direction: column;
   /* justify-content: center; */
   align-items: center;
-`;
-
-const TitleH1 = styled.h1`
-  margin-top: 16px;
 `;
 
 const StyledMessageForm = styled.form`

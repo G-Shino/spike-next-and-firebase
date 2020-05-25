@@ -5,10 +5,10 @@ import { TextField, Button, Typography } from "@material-ui/core";
 import firebase from "../lib/firebase";
 
 const SignUp: React.FC = () => {
-  // const [nickname, setNickname] = useState("");
-  // const [nicknameValidationMessage, setNicknameValidationMessage] = useState(
-  //   "このフィールドを入力してください。"
-  // );
+  const [nickname, setNickname] = useState("");
+  const [nicknameValidationMessage, setNicknameValidationMessage] = useState(
+    "このフィールドを入力してください。"
+  );
   const [email, setEmail] = useState("");
   const [emailValidationMessage, setEmailValidationMessage] = useState(
     "このフィールドを入力してください。"
@@ -18,10 +18,10 @@ const SignUp: React.FC = () => {
     "このフィールドを入力してください。"
   );
 
-  // const handleNicknameFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setNickname(e.target.value);
-  //   setNicknameValidationMessage(e.target.validationMessage);
-  // };
+  const handleNicknameFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNickname(e.target.value);
+    setNicknameValidationMessage(e.target.validationMessage);
+  };
   const handleEmailFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
     setEmailValidationMessage(e.target.validationMessage.slice(0, 22));
@@ -38,10 +38,14 @@ const SignUp: React.FC = () => {
   ) => {
     e.preventDefault();
     try {
-      const user = await firebase
+      const result = await firebase
         .auth()
         .createUserWithEmailAndPassword(email, password);
-      console.log("Sing up: OK", user);
+      console.log("Sing up: OK", result);
+      await result.user?.updateProfile({
+        displayName: nickname,
+      });
+      console.log("User Profile Update: OK");
       Router.push("/chat");
     } catch (error) {
       console.error("Sign up: ERROR", error);
@@ -52,12 +56,15 @@ const SignUp: React.FC = () => {
     <WrapperDiv>
       <Typography variant="h1">Sign Up</Typography>
       <MainForm>
-        {/* <StyledTextField
-          required
+        <StyledTextField
           label="Nickname"
+          type="text"
+          value={nickname}
           onChange={handleNicknameFormChange}
+          required
+          error={!(nicknameValidationMessage === "")}
           helperText={nicknameValidationMessage}
-        /> */}
+        />
         <StyledTextField
           label="Email"
           type="email"
@@ -101,8 +108,8 @@ const WrapperDiv = styled.div`
 
 const MainForm = styled.form`
   width: 100%;
-  height: 240px;
-  margin-top: 8px;
+  height: 320px;
+  margin-top: 16px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
