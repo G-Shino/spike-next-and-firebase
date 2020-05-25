@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import Router from "next/router";
 import firebase from "./../lib/firebase";
 import styled from "@emotion/styled";
+import { css } from "@emotion/core";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
+import { theme } from "./../constants/Theme";
 
 interface messageData {
   UID: string;
@@ -82,12 +84,31 @@ const Logout: React.FC = () => {
           </StyledButton>
         </TitleDiv>
         <MainChatDiv elevation={3}>
-          {messageDataList.map((message: messageData, idx) => (
-            <MessageDiv key={idx}>
-              <Typography variant="body1">{message.message}</Typography>
-              <Typography variant="body1">{message.name}</Typography>
-            </MessageDiv>
-          ))}
+          {messageDataList.map((message: messageData, idx) => {
+            if (message.UID === currentUID) {
+              return (
+                <MyMessageDiv key={idx}>
+                  <Typography variant="body2" css={CssMessage}>
+                    {message.name}
+                  </Typography>
+                  <Typography variant="body1" css={CssMessage}>
+                    {message.message}
+                  </Typography>
+                </MyMessageDiv>
+              );
+            } else {
+              return (
+                <MessageDiv key={idx}>
+                  <Typography variant="body2" css={CssMessage}>
+                    {message.name}
+                  </Typography>
+                  <Typography variant="body1" css={CssMessage}>
+                    {message.message}
+                  </Typography>
+                </MessageDiv>
+              );
+            }
+          })}
         </MainChatDiv>
         <StyledMessageForm>
           <StyledTextField
@@ -144,10 +165,24 @@ const MainChatDiv = styled(Paper)`
 
 const MessageDiv = styled.div`
   align-self: flex-start;
-  width: 480px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  width: 320px;
+  margin: 8px 0 8px 8px;
+  border: solid 1px #f2f2f2;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+`;
+
+const MyMessageDiv = styled.div`
+  align-self: flex-end;
+  width: 320px;
+  margin: 8px 8px 8px 0;
+  border: solid 1px ${theme.palette.primary.light};
+  background-color: ${theme.palette.primary.light};
+  border-radius: 5px;
+`;
+
+const CssMessage = css`
+  margin-left: 2px;
 `;
 
 const StyledMessageForm = styled.form`

@@ -27,6 +27,9 @@ export const theme = createMuiTheme({
     body1: {
       fontSize: 16,
     },
+    body2: {
+      fontSize: 10,
+    },
     button: {
       textTransform: "none",
     },
