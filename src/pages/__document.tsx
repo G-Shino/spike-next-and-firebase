@@ -1,7 +1,7 @@
 import React from "react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheets } from "@material-ui/core/styles";
-import { theme } from "./../constants/Theme";
+import { Theme } from "../constants/Theme";
 
 export default class MyDocument extends Document {
   render(): JSX.Element {
@@ -11,7 +11,7 @@ export default class MyDocument extends Document {
           {/* PWA primary color */}
           <title>spike-next-and-firebase</title>
           <meta charSet="utf-8" />
-          <meta name="theme-color" content={theme.palette.primary.main} />
+          <meta name="theme-color" content={Theme.palette.primary.main} />
           <meta name="viewport" content="width=device-width,initial-scale=1" />
           <link
             href="https://fonts.googleapis.com/css2?family=Jost:ital@0;1&display=swap"

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Router from "next/router";
-import firebase from "./../lib/firebase";
+import firebase from "../lib/firebase";
 import styled from "@emotion/styled";
 import { css } from "@emotion/core";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
-import { theme } from "./../constants/Theme";
+import { Theme } from "../constants/Theme";
 
 interface messageData {
   UID: string;
@@ -156,7 +156,7 @@ const StyledButton = styled(Button)`
 
 const MainChatDiv = styled(Paper)`
   width: 100%;
-  height: 640px;
+  height: 600px;
   margin-top: 8px;
   overflow: scroll;
   display: flex;
@@ -176,13 +176,14 @@ const MyMessageDiv = styled.div`
   align-self: flex-end;
   width: 320px;
   margin: 8px 8px 8px 0;
-  border: solid 1px ${theme.palette.primary.light};
-  background-color: ${theme.palette.primary.light};
+  border: solid 1px ${Theme.palette.primary.light};
+  background-color: ${Theme.palette.primary.light};
   border-radius: 5px;
 `;
 
 const CssMessage = css`
   margin-left: 2px;
+  word-wrap: break-word;
 `;
 
 const StyledMessageForm = styled.form`

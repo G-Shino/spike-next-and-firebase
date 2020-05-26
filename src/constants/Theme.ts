@@ -1,6 +1,6 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 
-export const theme = createMuiTheme({
+export const Theme = createMuiTheme({
   //色の設定
   palette: {
     type: "light",

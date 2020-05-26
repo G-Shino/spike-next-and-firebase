@@ -6,7 +6,7 @@ import { StylesProvider } from "@material-ui/styles";
 import globalCSS from "./../styles/global";
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { theme } from "./../constants/Theme";
+import { Theme } from "../constants/Theme";
 
 const MyApp: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
   Component,
@@ -22,7 +22,7 @@ const MyApp: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
 
   return (
     <>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={Theme}>
         <Global styles={globalCSS} />
         <StylesProvider injectFirst>
           <CssBaseline />
