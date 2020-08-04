@@ -1,8 +1,6 @@
 import { css } from "@emotion/core";
 import emotionReset from "emotion-reset";
-import { Color } from "./../constants/Color";
 
-//emotion-resetとかに変更した方が良いかもね
 const globalCSS = css`
   ${emotionReset}
   html {
@@ -10,12 +8,9 @@ const globalCSS = css`
   }
 
   body {
-    color: ${Color.FONT_COLOR};
-    font-size: 1.4rem;
     font-family: "Jost", "YuGothic", "Yu Gothic", "游ゴシック", "Meiryo",
       "メイリオ", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN",
       -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-    background-color: ${Color.BASE_COLOR};
   }
 
   ul,
