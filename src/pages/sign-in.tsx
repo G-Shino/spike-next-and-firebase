@@ -7,10 +7,12 @@ import firebase from "../lib/firebase";
 
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState("");
+  const [initialEmail, setInitialEmail] = useState(true);
   const [emailValidationMessage, setEmailValidationMessage] = useState(
     "このフィールドを入力してください。"
   );
   const [password, setPassword] = useState("");
+  const [initialPassword, setInitialPassword] = useState(true);
   const [passwordValidationMessage, setPasswordValidationMessage] = useState(
     "このフィールドを入力してください。"
   );
@@ -19,10 +21,12 @@ const SignIn: React.FC = () => {
   const handleEmailFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
     setEmailValidationMessage(e.target.validationMessage.slice(0, 22));
+    setInitialEmail(false);
   };
   const handlePasswordFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
     setPasswordValidationMessage(e.target.validationMessage);
+    setInitialPassword(false);
     if (e.target.value.length < 6 && e.target.validationMessage == "") {
       setPasswordValidationMessage("パスワードは6文字以上です。");
     }
@@ -61,7 +65,7 @@ const SignIn: React.FC = () => {
           value={email}
           onChange={handleEmailFormChange}
           required
-          error={!(emailValidationMessage === "")}
+          error={!(emailValidationMessage === "") && !initialEmail}
           helperText={emailValidationMessage}
         />
         <StyledTextField
@@ -70,7 +74,7 @@ const SignIn: React.FC = () => {
           type="password"
           onChange={handlePasswordFormChange}
           required
-          error={!(passwordValidationMessage === "")}
+          error={!(passwordValidationMessage === "") && !initialPassword}
           helperText={passwordValidationMessage}
         />
         <StyledButton

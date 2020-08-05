@@ -7,14 +7,17 @@ import firebase from "../lib/firebase";
 
 const SignUp: React.FC = () => {
   const [nickname, setNickname] = useState("");
+  const [initialNickname, setInitialNickname] = useState(true);
   const [nicknameValidationMessage, setNicknameValidationMessage] = useState(
     "このフィールドを入力してください。"
   );
   const [email, setEmail] = useState("");
+  const [initialEmail, setInitialEmail] = useState(true);
   const [emailValidationMessage, setEmailValidationMessage] = useState(
     "このフィールドを入力してください。"
   );
   const [password, setPassword] = useState("");
+  const [initialPassword, setInitialPassword] = useState(true);
   const [passwordValidationMessage, setPasswordValidationMessage] = useState(
     "このフィールドを入力してください。"
   );
@@ -24,14 +27,18 @@ const SignUp: React.FC = () => {
   const handleNicknameFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNickname(e.target.value);
     setNicknameValidationMessage(e.target.validationMessage);
+    setInitialNickname(false);
   };
   const handleEmailFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
-    setEmailValidationMessage(e.target.validationMessage.slice(0, 22));
+    // setEmailValidationMessage(e.target.validationMessage.slice(0, 22));
+    setEmailValidationMessage(e.target.validationMessage);
+    setInitialEmail(false);
   };
   const handlePasswordFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
     setPasswordValidationMessage(e.target.validationMessage);
+    setInitialPassword(false);
     if (e.target.value.length < 6 && e.target.validationMessage == "") {
       setPasswordValidationMessage("パスワードは6文字以上です。");
     }
@@ -44,7 +51,7 @@ const SignUp: React.FC = () => {
       const result = await firebase
         .auth()
         .createUserWithEmailAndPassword(email, password);
-      console.log("Sing up: OK", result);
+      console.log("Sign up: OK", result);
       await result.user?.updateProfile({
         displayName: nickname,
       });
@@ -74,7 +81,7 @@ const SignUp: React.FC = () => {
           value={nickname}
           onChange={handleNicknameFormChange}
           required
-          error={!(nicknameValidationMessage === "")}
+          error={!(nicknameValidationMessage === "") && !initialNickname}
           helperText={nicknameValidationMessage}
         />
         <StyledTextField
@@ -83,7 +90,7 @@ const SignUp: React.FC = () => {
           value={email}
           onChange={handleEmailFormChange}
           required
-          error={!(emailValidationMessage === "")}
+          error={!(emailValidationMessage === "") && !initialEmail}
           helperText={emailValidationMessage}
         />
         <StyledTextField
@@ -92,7 +99,7 @@ const SignUp: React.FC = () => {
           type="password"
           onChange={handlePasswordFormChange}
           required
-          error={!(passwordValidationMessage === "")}
+          error={!(passwordValidationMessage === "") && !initialPassword}
           helperText={passwordValidationMessage}
         />
         <StyledButton
@@ -129,7 +136,7 @@ const MainForm = styled.form`
 `;
 
 const StyledTextField = styled(TextField)`
-  min-width: 480px;
+  width: 480px;
 ` as typeof TextField;
 
 const StyledButton = styled(Button)`

@@ -46,6 +46,7 @@ const Logout: React.FC = () => {
         message,
         createdAt: firebase.database.ServerValue.TIMESTAMP,
       });
+      setMessage("");
       console.log("message send: OK");
     } catch (error) {
       console.error("message send: ERROR", error);
