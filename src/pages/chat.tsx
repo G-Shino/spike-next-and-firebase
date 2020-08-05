@@ -73,6 +73,13 @@ const Logout: React.FC = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const target = document.getElementById("target");
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "end" });
+    }
+  }, [messageDataList]);
+
   return (
     <WrapperDiv>
       <MainDiv>
@@ -108,6 +115,7 @@ const Logout: React.FC = () => {
               );
             }
           })}
+          <div id="target"></div>
         </MainChatDiv>
         <StyledMessageForm>
           <StyledTextField
