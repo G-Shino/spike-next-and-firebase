@@ -9,7 +9,6 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           {/* PWA primary color */}
-          <title>spike-next-and-firebase</title>
           <meta charSet="utf-8" />
           <meta name="theme-color" content={Theme.palette.primary.main} />
           <meta name="viewport" content="width=device-width,initial-scale=1" />

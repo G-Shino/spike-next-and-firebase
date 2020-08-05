@@ -59,9 +59,8 @@ const Logout: React.FC = () => {
       .orderByChild("createdAt");
     messageRef.off("child_added");
     messageRef.on("child_added", (messageSnapshot) => {
-      const messageId = messageSnapshot.key;
+      // const messageId = messageSnapshot.key;
       const messageData = messageSnapshot.val();
-      console.log(messageId, messageData);
       setMessageDataList((prev) => [...prev, messageData]);
     });
     const currentUser = firebase.auth().currentUser;

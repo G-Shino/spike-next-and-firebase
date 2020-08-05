@@ -1,6 +1,7 @@
 import React from "react";
 import { NextComponentType } from "next";
 import { AppContext, AppInitialProps, AppProps } from "next/app";
+import Head from "next/head";
 import { Global } from "@emotion/core";
 import { StylesProvider } from "@material-ui/styles";
 import globalCSS from "./../styles/global";
@@ -23,6 +24,9 @@ const MyApp: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
   return (
     <>
       <ThemeProvider theme={Theme}>
+        <Head>
+          <title>spike-next-and-firebase</title>
+        </Head>
         <Global styles={globalCSS} />
         <StylesProvider injectFirst>
           <CssBaseline />
